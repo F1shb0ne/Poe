@@ -16,12 +16,15 @@ class IRCShell(irc.bot.SingleServerIRCBot):
 
     def on_join(self, c, e):
         # Event for clients joining the channel
-        # stored as e.source.nick
-        pass
+        client = e.source.nick
+
+        self.Brain.HandleJoin(client)
 
     def on_part(self, c, e):
         # Event for clients leaving the channel
-        pass
+        client = e.source.nick
+
+        self.Brain.HandlePart(client)
 
     def on_nicknameinuse(self, c, e):
         # Event for when the bot's nickname is in use
@@ -41,4 +44,5 @@ class IRCShell(irc.bot.SingleServerIRCBot):
     def on_pubmsg(self, c, e):
         speaker = e.source.nick
         message = e.arguments[0]
-        print(speaker + ' said \"' + message + '\"')
+
+        self.Brain.HandleChat(speaker, message)

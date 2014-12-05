@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 class Config:
@@ -22,6 +23,7 @@ class Config:
             outfile.write('Channel #blah\n')
             outfile.write('Nick Poe\n')
             outfile.close()
+            sys.exit()
 
         else:
             print('Loading configuration file: ' + configFile)
